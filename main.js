@@ -4,7 +4,7 @@
 let otherLinks = Object.assign(document.createElement("div"), {
   className: "other-links",
   innerHTML: `
-                    <img src="/photos/megamenu.png" alt="">
+                    <img src="/template-3/photos/megamenu.png" alt="">
                     <ul>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#team-members">Teem Members</a></li>
