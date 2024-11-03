@@ -1,0 +1,177 @@
+
+@use  "./helper/mixin"  as * ;
+
+@use  "./helper/placeholders" as *  ;
+
+@use  "./helper//variables"  as * ;
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    font-family: "Cairo", sans-serif;
+    
+}
+ul{
+    
+    list-style: none;
+}
+a{
+    color: unset;
+    display: block;
+    text-decoration: none;
+}
+
+:is(input, textarea){
+    outline: none;
+}
+
+
+.container{
+    margin: 0 35px;
+    @include lt-sm{
+        margin: 0 20px;
+    }
+
+}
+
+
+
+
+
+.white-space{
+    padding: 50px 0;
+}
+
+
+
+.cercle{
+    display: flex;
+    li{
+        transition: .5s;
+        margin: 0 10px 0 0 ;
+        background-color: #fff;
+        border: 1px solid #444;
+        width: 20px;
+        height: 20px;
+        border-radius:50% ;
+        &:nth-child(2){
+            background-color: $main_color;
+        }
+    }
+
+    
+}
+
+
+
+
+a.globle{
+    margin: $distance_elg auto;
+    display: block;
+    width: fit-content;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    padding: $distance_sm ;
+    background-color: transparent;
+    border: 2px solid black;
+    position: relative;
+    z-index: 3;
+    
+    &::before,&::after{
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: $main-color;
+        border-radius: 50%;
+        top: 50%;
+        transition: .6s;
+        transform: translateY(-50%);
+        z-index: -1;
+    }
+    
+    &::before{
+    left: -35px;
+    }
+    
+    &::after{
+        right: -35px;
+    }
+    
+    @keyframes overflow {
+        60%{
+            color: #000;
+            border: 2px solid #000;
+        }
+        100%{
+            border-color : $main-color ;
+            color: #fff;
+            overflow: hidden;
+         
+        }
+    
+    }
+    @keyframes go-left {
+        30%{
+            box-shadow: 0px 0px 0px 0px $main-color;
+        }
+        50%{
+            transform: translate(35px,-50%) ;
+            
+        }
+        100%{
+            transform: translate(35px,-50%) ;
+            box-shadow: 0px 0px 5px 100px $main-color;
+        }
+    }
+    @keyframes go-right {
+        30%{
+            box-shadow: 0px 0px 0px 0px $main-color;
+        }
+        50%{
+            transform: translate(-35px,-50%) ;
+            
+        }
+        100%{
+            transform: translate(-35px,-50%) ;
+            box-shadow: 0px 0px 5px 100px $main-color;
+        }
+    }
+    &:hover{
+    
+        &::before{
+            animation: go-left 1s forwards;
+            
+                
+                
+    
+            }
+            
+            &::after{
+                
+        animation: go-right 1s  forwards;
+    
+    
+            }
+    
+        animation: overflow 1s  forwards ;
+        
+        
+        
+    }
+    
+    
+    }
+    
+    
+    

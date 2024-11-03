@@ -1,0 +1,160 @@
+@use  "./helper/mixin"  as * ;
+
+@use  "./helper/placeholders"  as * ;
+
+@use  "./helper/variables" as * ;
+
+.feature{
+    .container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        justify-content: center;
+        align-items: center;
+            gap: 50px;
+        
+        *:not(.img,img,.box){
+            width: fit-content ;
+            text-align: center;
+            margin:  auto;
+        }
+
+        .box{
+            max-width: 400px;
+            margin: auto;
+            border: 1px solid #888;
+            padding-bottom: $distance_md;
+            overflow: hidden;
+            --color:#f44036;
+        .img{
+            position: relative;
+            
+            img{
+                width: 100%;
+            }
+            &::after,&::before{
+                content: "";
+                position: absolute;
+                
+                
+            }
+            &::before{
+                height: 100%;
+                width: 100%;
+                background-color: var(--color);
+                opacity: .5;
+                left: 0;
+            }
+            &::after{
+                bottom: 0;
+                border-style:solid ;
+                left:0 ;
+                border-color:    transparent transparent #fff transparent  ;
+                border-width: 0  0 200px 500px ;
+                transition: $maint_transition;
+              
+            }
+        }
+        h3{
+            font-size: 30px;
+            margin: $distance_md auto ; 
+            position: relative;
+            padding-bottom: 10px;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: calc(100%  - 16px );
+                    height: 3px;
+                    left: 8px;
+                    bottom: 0;
+                    background-color: var(--color);
+                }
+
+            }
+            p{
+                color:$font_p_color_sm ;
+                padding: 0 10px;
+                margin: $distance_md auto;
+                line-height: 1.8;
+            }
+            
+            a{
+                font-weight: bold;
+                border: 3px solid var(--color);
+                color: $main-color;
+                padding: 10px 20px;
+                transition: $maint_transition;
+                color: var(--color);
+                border-radius: 5px;
+                font-size: 20px;
+                background-image: linear-gradient(to right , var(--color) 50% , #fff 50% );
+                background-size: 200% , 100%;
+                background-position: right bottom  ;
+            }
+
+        }
+
+
+        .box:nth-child(2){
+            --color:#009688;
+        }
+
+        .box:nth-child(3){
+            --color: #03a9f4;
+        }
+        
+        .box:hover{
+            a{
+              color: #fff;
+              background-position: left bottom ;
+            }
+            
+              .img::after{
+                left: 0;
+                border-color:   transparent transparent #fff transparent  ;
+                border-width: 0 600px 135px 0px;
+              }
+
+            
+        }
+    }
+}
+
+
+.testimonials{
+    background-color: #eee;
+    .container{
+        @include grid-column(300px);
+        gap:50px;
+        .box{
+            position: relative;
+            background-color: #fff;
+            padding: $distance_sm;
+            border-radius: 5px;
+        box-shadow: $main_boxshadow;
+            >*{
+                margin: 10px 0;
+            }
+            img{
+                position: absolute;
+                width: 80px;
+                border-radius: 50%;
+                outline: 15px solid #eee;
+                right:-15px ;
+                top:-35px ;
+            }
+            h4{
+                font-size: 20px;
+            }
+            :where(span,p){
+                color: $font_p_color_sm;
+            }
+            i:not(.empty){
+                color: gold;
+            }
+            p{
+                line-height: 1.3;
+                
+            }
+        }
+    }
+}

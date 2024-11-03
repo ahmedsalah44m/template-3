@@ -1,0 +1,234 @@
+@use  "./helper/mixin"  as * ;
+
+@use  "./helper/placeholders"  as * ;
+
+@use  "./helper/variables" as * ;
+
+
+
+.events{
+    .container{
+        display: grid;
+        grid-template-columns: minmax(350px , 400px) auto;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        img{
+            width: 100%;
+        }
+        .info{
+            text-align: center;
+            .date{
+                margin-bottom: 30px;
+                display: flex;
+                gap:10px ;
+                justify-content: center;
+                .box{
+                    border-radius: 5px;
+                    border: 1px solid #999;
+                    width: 70px ;
+                    padding-bottom:5px ;
+                    font-size: 14px;
+                    transition: $maint-transition;
+                    span{
+                        display: block;
+                        font-size: 30px;
+                        color: $main-color;
+                        padding: 15px 0 25px 0px;;
+                        margin-bottom: 5px;
+                        border-bottom: 1px solid #999;
+                        font-weight: bold;
+                    
+
+                    }
+                    &:hover{
+                        border-color: $main-color;
+                        span{
+                        border-color: $main-color;
+                        
+                        }
+                    }
+                }
+            }
+            .text{
+                line-height: 1.7;
+                h3{
+                    font-size: 30px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        form{
+            grid-area: 2/1/2/3;
+            margin: auto;
+            display: flex;
+            background-color: #eee;
+            padding: 30px 20px;
+            border-radius: 60px;
+            input{
+                padding: 0 $distance_sm;
+                border-radius: 35px;
+                border: none;
+                outline: none;
+                width: 300px;
+                margin-right: $distance_sm;
+                @include onfocusinput;
+            }
+            a{
+                background-color: $main-color;
+                line-height: 3;
+                padding: 0 20px;
+                color: #fff;
+                border-radius: 35px;
+                transition: $maint-transition;
+                &:hover{
+                    background-color: $main_dark_color;
+                }
+            }
+        }
+                @media (max-width:900px) {
+            grid-template-columns: auto;
+            form{
+                grid-area: unset;
+                @include lt-sm{
+                    width: 340px;
+                    padding: 30px 15px;
+                }
+        }
+    }
+    }
+}
+
+
+.priceing{
+    background-color: #eee;
+    .container{
+        @include grid-column(300px);
+        justify-content: center;
+        max-width: 1200px;
+        margin: 100px auto 0 auto;
+        gap: 40px;
+        .box{
+            box-shadow: $main_boxshadow;
+            background-color: #fff;
+            padding: 35px 0;
+            width: 100%;
+            max-width: 335px;
+            position: relative;
+            z-index: 1;
+            span{
+                display: block;
+            }
+            .head{
+                text-align: center;
+                h3{
+                    font-size: 25px;
+                    margin: 25px 0;
+                }
+                img{
+                    width: 80px;
+                }
+                .price{
+                    font-size: 50px;
+                    font-weight: bold;
+                    color: $main-color;
+                    margin: 15px 0 0 0;
+                    
+                }
+                & span{
+                    font-size: 15px;
+                    color: #888;
+                }
+            }
+            .body{
+                margin-top: $distance_md ;
+                span{
+                    margin:  0; 
+                    border-top: 1px solid #ccc;
+                    padding: 25px 20px;
+                }
+                i{
+                    margin-right: 10px;
+                    color: $main-color;
+                }
+            }
+            a{
+                width: fit-content;
+                margin:  auto ;
+                padding: $distance_sm;
+                color: $main_dark_color;
+                border: 2px solid $main_dark_color;
+                border-radius: 9px;
+                margin-top: 20px;
+                transition: $maint-transition;
+                font-weight: bold;
+                &:hover{
+                    color: #fff; 
+                    background-color: $main_dark_color;
+
+                }
+            }
+
+            &:before, &::after{
+                content: "";
+                position: absolute;
+                background-color: #f6f6f6f6;
+                width: 0;
+                height: 50%;
+                transition: $maint-transition;
+                z-index: -1;
+            }
+
+            &::before{
+                top: 0px;
+                left: 0px;
+            }
+
+            &::after{
+                right: 0px;
+                bottom: 0px;
+            }
+            &:hover{
+                &:before, &::after{
+                    width: 100%;
+                }
+            }
+
+
+            &:nth-child(2) {
+
+                .head:before, .head::after{
+                    content: "";
+                    right: 25px;
+                    position: absolute;
+                }
+
+                .head::before{
+                    top: 134px;
+                    border: solid 21px;
+                    padding-left: 1px;
+                    border-color: $main_dark_color  $main_dark_color transparent $main_dark_color ;
+                }
+
+                .head::after{
+                    content: "Most Popular";
+                    right: 25px;
+                    writing-mode: vertical-lr;
+                    color: #fff;
+                    font-weight: 900;
+                    top: 0;
+                    font-size: 18px;
+                    padding: 16px 11px 0 11px;
+                    height: 135px;
+                    background-color: $main_dark_color;
+                }
+                @media (min-width:1000px) {
+                    transform: translateY(-25px);
+                    
+                }
+            }
+
+           
+        }
+    }
+}
